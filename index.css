@@ -1,0 +1,400 @@
+/* Base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%; /* Ensure the body and html take up the full height */
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
+  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+              url('images/TrafficBlur.jpg') center/cover no-repeat; /* Apply background image to body */
+}
+
+/* Update Navbar Structure */
+.navbar {
+  display: flex;
+  justify-content: center; /* Center content */
+  align-items: center;
+  padding: 1rem 2%;
+  position: fixed; /* Keeps navbar at top */
+  width: 100%;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0); /* Semi-transparent background */
+  z-index: 1000; /* Ensures navbar stays above other content */
+}
+
+/* Logo Styles */
+.logo {
+  width: 5rem;
+  height: 5rem;
+  position: absolute;
+  left: 50%;
+  top: 72%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  transition: transform 1s ease, opacity 1s ease; /* Added transition for transform and opacity */
+}
+
+/* Hover effects */
+.logo:hover {
+  opacity: 0.9;
+  cursor: pointer;
+  transform: translate(-50%, -50%) scale(1.1); /* Smooth scaling effect */
+}
+
+/* Adjusted Media Queries */
+@media (max-width: 1024px) {
+  .logo {
+    width: 5.5rem;
+    height: 5.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .logo {
+    width: 5.5rem;
+    height: 5.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+    width: 5rem;
+    height: 5rem;
+  }
+}
+
+/* Updated Nav Links Container */
+/* Updated Nav Link Button with New Style */
+.nav-link {
+  --border-color: linear-gradient(-45deg, #ffae00, #370490, #0a7876);
+  --border-width: 0.125em;
+  --curve-size: 0.7em;
+  --blur: 30px;
+  --bg: #080312;
+  --color: #afffff;
+  color: var(--color);
+  cursor: pointer;
+  min-width: 120px;
+  position: relative;
+  isolation: isolate;
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  border: 0;
+  text-transform: uppercase;
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.6);
+  clip-path: polygon(
+    0% var(--curve-size),
+    var(--curve-size) 0,
+    100% 0,
+    100% calc(100% - var(--curve-size)),
+    calc(100% - var(--curve-size)) 100%,
+    0 100%
+  );
+  transition: color 250ms;
+  margin-left: auto; /* Maintains right-side positioning */
+}
+
+/* Nav Links Container */
+.nav-links {
+  margin-left: auto; /* Push to far right */
+  position: relative;
+  z-index: 101; /* Ensure button stays above logo */
+}
+
+/* Button Background Effects */
+.nav-link::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--border-color);
+  background-size: 300% 300%;
+  animation: move-bg7234 5s ease infinite;
+  z-index: -2;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--bg);
+  z-index: -1;
+  clip-path: polygon(
+    var(--border-width) calc(var(--curve-size) + var(--border-width) * 0.5),
+    calc(var(--curve-size) + var(--border-width) * 0.5) var(--border-width),
+    calc(100% - var(--border-width)) var(--border-width),
+    calc(100% - var(--border-width)) calc(100% - calc(var(--curve-size) + var(--border-width) * 0.5)),
+    calc(100% - calc(var(--curve-size) + var(--border-width) * 0.5)) calc(100% - var(--border-width)),
+    var(--border-width) calc(100% - var(--border-width))
+  );
+  transition: clip-path 500ms;
+}
+
+/* Animations */
+@keyframes move-bg7234 {
+  0% { background-position: 31% 0%; }
+  50% { background-position: 70% 100%; }
+  100% { background-position: 31% 0%; }
+}
+
+/* Hover Effects */
+.nav-link:hover {
+  transform: translateY(-1px);
+  color: #fff;
+}
+
+.nav-link:hover::after {
+  clip-path: polygon(
+    calc(100% - var(--border-width)) calc(100% - calc(var(--curve-size) + var(--border-width) * 0.5)),
+    calc(100% - var(--border-width)) var(--border-width),
+    calc(100% - var(--border-width)) var(--border-width),
+    calc(100% - var(--border-width)) calc(100% - calc(var(--curve-size) + var(--border-width) * 0.5)),
+    calc(100% - calc(var(--curve-size) + var(--border-width) * 0.5)) calc(100% - var(--border-width)),
+    calc(100% - calc(var(--curve-size) + var(--border-width) * 0.5)) calc(100% - var(--border-width))
+  );
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .nav-link {
+    padding: 0.65rem 1.75rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-link {
+    padding: 0.55rem 1.5rem;
+    font-size: 0.85rem;
+  }
+}
+
+/* Hero section */
+.hero {
+  position: relative;
+  padding: 4rem 5%;
+  padding-top: calc(4rem + 5rem); /* Adjust to account for the height of the navbar */
+  text-align: center;
+  color: rgb(217, 217, 217); /* Changed text color to white */
+  min-height: 74vh; /* Add minimum height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+/* CTA Button */
+.cta-button {
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.cta-button:hover {
+  background-color: #0056b3;
+}
+
+.about-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 5%;
+  text-align: center;
+  height: auto; /* Set height to auto */
+}
+
+.about-section {
+  padding: 2rem 5%;
+  text-align: center;
+
+}
+
+.about-button {
+  display: inline-block;
+  padding: 1.5rem 3rem;
+  background: linear-gradient(135deg, #4a90e2, #2b6cb0);
+  color: white !important;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0,0,0,.2);
+  border: none;
+  text-transform: uppercase;
+}
+
+.about-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+  background: linear-gradient(135deg, #2b6cb0, #4a90e2);
+}
+
+@media (max-width: 768px) {
+  .about-button {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+  }
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 1.5rem;
+  background-color: #333;
+  color: white;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .navbar {
+    justify-content: center; /* Center logo and right-align button */
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 14px;
+  }
+
+  .cta-button {
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .hero {
+    padding: 2rem 5%;
+  }
+}
+
+/* CSS */
+.button-64 {
+  align-items: center;
+  background-image: linear-gradient(144deg, #AF40FF, #5B42F3 50%, #00DDEB);
+  border: 0;
+  border-radius: 8px;
+  box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  display: flex;
+  font-family: 'Arial', sans-serif; /* Changed to match your site's font */
+  font-size: 1.25rem; /* Using rem units */
+  justify-content: center;
+  line-height: 1.5;
+  margin: 1rem auto; /* Added auto margins for better centering */
+  max-width: 30%;
+  min-width: 140px;
+  padding: 3px;
+  text-decoration: none;
+  user-select: none;
+  width: 80%; /* Better responsive control */
+  transition: all 0.3s ease; /* Added transition for all properties */
+}
+
+.button-64:active,
+.button-64:hover {
+  outline: 0;
+  transform: translateY(-2px); /* Add subtle hover effect */
+  cursor: pointer;
+}
+
+.button-64 span {
+  background-color: rgb(5, 6, 45);
+  padding: 1rem 1.5rem; /* Using rem units */
+  border-radius: 6px;
+  width: 100%;
+  height: 100%;
+  transition: all 0.3s ease;
+  display: block; /* Better text alignment */
+}
+
+.button-64:hover span {
+  background: rgba(5, 6, 45, 0.9); /* Semi-transparent instead of none */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .button-64 {
+    width: 90%;
+    font-size: 1.1rem;
+    min-width: 120px;
+  }
+  
+  .button-64 span {
+    padding: 0.75rem 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .button-64 {
+    width: 100%;
+    font-size: 1rem;
+  }
+  
+  .button-64 span {
+    padding: 0.5rem 0.75rem;
+  }
+}
+
+/* Masked text animation */
+.masking-container {
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.masked-text {
+  font-size: 4rem; /* Reduced from 8rem for better proportion */
+  font-weight: bold;
+  color: transparent;
+  background-image: url('https://thumbs.dreamstime.com/b/incredibly-beautiful-sunset-sun-lake-sunrise-landscape-panorama-nature-sky-amazing-colorful-clouds-fantasy-design-115177001.jpg');
+  background-size: 200%;
+  background-position: 0 50%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: animate-background 5s infinite alternate linear;
+  line-height: 1.2;
+}
+
+@keyframes animate-background {
+  0% {
+      background-position: 0 50%;
+  }
+  100% {
+      background-position: 100% 50%;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .masked-text {
+      font-size: 3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .masked-text {
+      font-size: 2.5rem;
+  }
+}
