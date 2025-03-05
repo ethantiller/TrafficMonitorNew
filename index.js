@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', (event) => {
     // Initialize Auth0 with environment variables
     const auth0 = new Auth0Client({
-        domain: "ev-h2kl7dklje1ovh16.us.auth0.com",
+        domain: "dev-h2kl7dklje1ovh16.us.auth0.com",
         client_id: "IZD9ObtBRNHd1IXlJY3avZqTkpB3Fs4r",
         redirect_uri: "https://ethantiller.github.io/TrafficMonitorNew/main.html"
     });
