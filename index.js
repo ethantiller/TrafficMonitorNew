@@ -1,13 +1,8 @@
-const AUTH0_DOMAIN = window.__ENV.AUTH0_DOMAIN;
-const AUTH0_CLIENT_ID = window.__ENV.AUTH0_CLIENT_ID;
-console.log(AUTH0_DOMAIN);
-console.log(AUTH0_CLIENT_ID);
-
 document.addEventListener('DOMContentLoaded', (event) => {
     // Initialize Auth0 with environment variables
     const auth0 = new Auth0Client({
-        domain: AUTH0_DOMAIN,
-        client_id: AUTH0_CLIENT_ID,
+        domain: dev-h2kl7dklje1ovh16.us.auth0.com,
+        client_id: IZD9ObtBRNHd1IXlJY3avZqTkpB3Fs4r,
         redirect_uri: "https://ethantiller.github.io/TrafficMonitorNew/main.html"
     });
 
