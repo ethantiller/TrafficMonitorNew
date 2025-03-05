@@ -13,14 +13,16 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Replace placeholders in env.js
+      - name: Generate env.js
         run: |
-          sed -i 's/"GOOGLE_MAPS_API_KEY"/"${{ secrets.GOOGLE_MAPS_API_KEY }}"/g' env.js
-          sed -i 's/"AUTH0_DOMAIN"/"${{ secrets.AUTH0_DOMAIN }}"/g' env.js
-          sed -i 's/"AUTH0_CLIENT_ID"/"${{ secrets.AUTH0_CLIENT_ID }}"/g' env.js
+          echo "window.__ENV = { \
+            GOOGLE_MAPS_API_KEY: '${{ secrets.GOOGLE_MAPS_API_KEY }}', \
+            AUTH0_DOMAIN: '${{ secrets.AUTH0_DOMAIN }}', \
+            AUTH0_CLIENT_ID: '${{ secrets.AUTH0_CLIENT_ID }}' \
+          };" > env.js
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GH_PAGES }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./
