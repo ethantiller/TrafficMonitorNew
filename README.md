@@ -22,4 +22,5 @@ For the **2025 RevUC Hackathon**, we developed a **traffic and weather monitorin
 1. **Clone the repository**
 2. **Install Requirements**
 3. **Run MainServer.py to interact with AI**
+4. Make sure to run flask server locally
 
